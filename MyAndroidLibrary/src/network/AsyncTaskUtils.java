@@ -10,8 +10,13 @@ public class AsyncTaskUtils extends AsyncTask<String, String, String> {
 
 	public AsyncTaskUtils(Context context, IAsyncTask ishowView) {
 		this.context = context;
-		this.ishowView = ishowView;
+		// this.ishowView = ishowView;
 
+	}
+
+	// 这一步是利用回调函数的思想，把实现类的一个对象作为参数传递给调用程序，调用程序通过这个参数来调用指定的函数ishowView.showView(result);
+	public void setAsyncTaskLisner(IAsyncTask ishowView) {
+		this.ishowView = ishowView;
 	}
 
 	@Override
