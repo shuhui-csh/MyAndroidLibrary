@@ -35,6 +35,10 @@
         <activity
             android:name="volley.VolleyActivity"
             android:label="@string/title_activity_volley" >
+        </activity>
+        <activity
+            android:name="handler.HandlerActivity"
+            android:label="@string/title_activity_handler" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

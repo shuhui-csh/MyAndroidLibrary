@@ -10,5 +10,6 @@
     <string name="title_activity_second">SecondActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_volley">VolleyActivity</string>
+    <string name="title_activity_handler">HandlerActivity</string>
 
 </resources>
