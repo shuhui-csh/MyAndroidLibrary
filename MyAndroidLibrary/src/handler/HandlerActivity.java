@@ -23,16 +23,6 @@ public class HandlerActivity extends Activity {
 	private Handler mHandler;
 	HandlerThread handlerthread;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,7 +51,7 @@ public class HandlerActivity extends Activity {
 			}
 
 		};
-		 handlerthread = new HandlerThread(mHandler);
+		handlerthread = new HandlerThread(mHandler);
 		handlerthread.start();
 
 		button.setOnClickListener(new OnClickListener() {
@@ -69,7 +59,7 @@ public class HandlerActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// 这里的发消息部分可新建一个线程不停地发
-				
+
 				Message msg = new Message();
 				msg.what = 123;
 				Bundle bundle = new Bundle();
