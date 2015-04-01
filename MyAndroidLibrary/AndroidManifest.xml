@@ -43,6 +43,10 @@
         <activity android:name="service.SimpleServiceActivity" >
         </activity>
         <activity android:name="service.BindServiceActivity" >
+        </activity>
+        <activity
+            android:name="service.AidlServiceActivity"
+            android:label="@string/title_activity_aidl_service" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,6 +62,11 @@
         <service android:name="service.BindService" >
             <intent-filter>
                 <action android:name="service.BIND_SERVICE" />
+            </intent-filter>
+        </service>
+        <service android:name="service.AidlService" >
+            <intent-filter>
+                <action android:name="service.AIDL_SERVICE" />
             </intent-filter>
         </service>
     </application>

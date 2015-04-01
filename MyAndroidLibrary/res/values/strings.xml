@@ -11,5 +11,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_volley">VolleyActivity</string>
     <string name="title_activity_handler">HandlerActivity</string>
+    <string name="title_activity_aidl_service">AidlServiceActivity</string>
 
 </resources>
