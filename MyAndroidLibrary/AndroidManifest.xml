@@ -41,17 +41,17 @@
             android:label="@string/title_activity_handler" >
         </activity>
         <activity android:name="service.SimpleServiceActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="service.BindServiceActivity" >
         </activity>
         <activity
             android:name="service.AidlServiceActivity"
             android:label="@string/title_activity_aidl_service" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name="service.SimpleService" >
@@ -67,6 +67,11 @@
         <service android:name="service.AidlService" >
             <intent-filter>
                 <action android:name="service.AIDL_SERVICE" />
+            </intent-filter>
+        </service>
+        <service android:name="service.ForegroundService" >
+            <intent-filter>
+                <action android:name="service.FOREGROUND_SERVICE" />
             </intent-filter>
         </service>
     </application>

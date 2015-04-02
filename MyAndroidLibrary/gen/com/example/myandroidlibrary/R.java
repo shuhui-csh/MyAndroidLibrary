@@ -13,6 +13,11 @@ public final class R {
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
+         Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
+    
+
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
@@ -24,26 +29,36 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000b;
-        public static final int appli_text=0x7f080007;
-        public static final int applic_button=0x7f080000;
-        public static final int button1=0x7f080005;
-        public static final int editText1=0x7f080003;
-        public static final int handlerbutton=0x7f080002;
-        public static final int handlereditText1=0x7f080001;
-        public static final int handlertextView=0x7f080004;
-        public static final int textView1=0x7f080006;
-        public static final int volletextView=0x7f080009;
-        public static final int volleybutton=0x7f080008;
-        public static final int volleyimageView1=0x7f08000a;
+        public static final int action_settings=0x7f080012;
+        public static final int appli_text=0x7f08000c;
+        public static final int applic_button=0x7f080005;
+        public static final int bindAidlService=0x7f080001;
+        public static final int bindService=0x7f080002;
+        public static final int button1=0x7f08000a;
+        public static final int editText1=0x7f080008;
+        public static final int getAidlState=0x7f080000;
+        public static final int getState=0x7f080004;
+        public static final int handlerbutton=0x7f080007;
+        public static final int handlereditText1=0x7f080006;
+        public static final int handlertextView=0x7f080009;
+        public static final int startService=0x7f08000d;
+        public static final int stopService=0x7f08000e;
+        public static final int textView1=0x7f08000b;
+        public static final int unbind=0x7f080003;
+        public static final int volletextView=0x7f080010;
+        public static final int volleybutton=0x7f08000f;
+        public static final int volleyimageView1=0x7f080011;
     }
     public static final class layout {
-        public static final int activity_first=0x7f030000;
-        public static final int activity_handler=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_second=0x7f030003;
-        public static final int activity_volley=0x7f030004;
-        public static final int lifecircle=0x7f030005;
+        public static final int activity_aidl_service=0x7f030000;
+        public static final int activity_bind_service=0x7f030001;
+        public static final int activity_first=0x7f030002;
+        public static final int activity_handler=0x7f030003;
+        public static final int activity_main=0x7f030004;
+        public static final int activity_second=0x7f030005;
+        public static final int activity_service=0x7f030006;
+        public static final int activity_volley=0x7f030007;
+        public static final int lifecircle=0x7f030008;
     }
     public static final class menu {
         public static final int first=0x7f070000;
@@ -57,6 +72,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050004;
         public static final int lifecircle=0x7f050002;
+        public static final int title_activity_aidl_service=0x7f05000a;
         public static final int title_activity_first=0x7f050003;
         public static final int title_activity_handler=0x7f050009;
         public static final int title_activity_main=0x7f050007;

@@ -25,7 +25,8 @@ public class SimpleServiceActivity extends Activity {
 		stop = (Button) findViewById(R.id.stopService);
 		// 创建启动service的intent
 		final Intent intent = new Intent();
-		intent.setAction("service.SIMPLE_SERVICE");
+		intent.setAction("service.FOREGROUND_SERVICE");
+		// intent.setAction("service.SIMPLE_SERVICE");
 		start.setOnClickListener(new OnClickListener() {
 
 			@Override
