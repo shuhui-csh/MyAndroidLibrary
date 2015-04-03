@@ -6,6 +6,12 @@ package broadcastreceiver;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 
+import service.BindServiceActivity;
+
+import com.example.myandroidlibrary.R;
+
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -110,7 +116,17 @@ public class MusicService extends Service {
 					mPlayer.stop();
 					status = 0x11;
 				}
-			
+				break;
+			case 3:
+				current++;
+				if (current >= 3) {
+					current = 0;
+				}
+				// 先停止播放
+				mPlayer.stop();
+				// 准备并播放下一首音乐
+				prepareAndPlay(musics[current]);
+				status = 0x12;
 			}
 			Intent uiIntent = new Intent(
 					MusicServiceBroadReceiveActivity.UPDATE_ACTION);
@@ -118,6 +134,7 @@ public class MusicService extends Service {
 			uiIntent.putExtra("current", current);
 			// 发送广播，将被Activity组件中的Broadcastreceive接收到
 			sendBroadcast(uiIntent);
+			showInForeword(current);
 		}
 	}
 
@@ -141,6 +158,22 @@ public class MusicService extends Service {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @param currentt
+	 *            使该服务成为前台服务，即在通知栏上显示出来
+	 */
+	public void showInForeword(int currentt) {
+		Notification notification = new Notification(R.drawable.ic_launcher,
+				"后台音乐", System.currentTimeMillis());
+		Intent intent = new Intent(this, MusicServiceBroadReceiveActivity.class);
+		PendingIntent pendIntent = PendingIntent
+				.getActivity(this, 0, intent, 0);
+		notification.setLatestEventInfo(this,
+				MusicServiceBroadReceiveActivity.titles[currentt],
+				MusicServiceBroadReceiveActivity.singers[currentt], pendIntent);
+		startForeground(1, notification);
 	}
 
 }

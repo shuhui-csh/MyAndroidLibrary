@@ -25,12 +25,12 @@ public class MusicServiceBroadReceiveActivity extends Activity implements
 	// 歌曲标题、歌手文本框
 	private TextView title, singer;
 	// 播放、暂停按钮，
-	private Button stop, play;
+	private Button stop, play, next;
 	// 定义音乐的播放状态，0x11代表没有播放，0X12代表正在播放，0x13代表暂停
 	private int status = 0x11;
 	private BroadcastReceiveService receiver;
-	String[] titles = new String[] { "你我", "桐花", "黑白配" };
-	String[] singers = new String[] { "陈树辉", "李妙", "林小妹" };
+	public static String[] titles = new String[] { "你我", "桐花", "黑白配" };
+	public static String[] singers = new String[] { "陈晓、妍希", "钟欣桐", "林小妹" };
 	// 这是后台service中的广播接收器所监听的action
 	public static final String CTL_ACTION = "broadcast.action.CTL_ACTION";
 	// 这是前台activity中的广播接收器所监听的action
@@ -44,8 +44,10 @@ public class MusicServiceBroadReceiveActivity extends Activity implements
 		singer = (TextView) findViewById(R.id.singer);
 		stop = (Button) findViewById(R.id.stop);
 		play = (Button) findViewById(R.id.play);
+		next = (Button) findViewById(R.id.next);
 		play.setOnClickListener(this);
 		stop.setOnClickListener(this);
+		next.setOnClickListener(this);
 
 		receiver = new BroadcastReceiveService();
 		IntentFilter filter = new IntentFilter();
@@ -75,17 +77,17 @@ public class MusicServiceBroadReceiveActivity extends Activity implements
 			}
 			switch (update) {
 			case 0x11:
-				//没有播放的状态按钮设置为：播放
+				// 没有播放的状态按钮设置为：播放
 				status = 0x11;
 				play.setText("播放");
 				break;
 			case 0x12:
-				//播放状态中按钮设置为：暂停
+				// 播放状态中按钮设置为：暂停
 				play.setText("暂停");
 				status = 0x12;
 				break;
 			case 0X13:
-				//暂停状态中按钮设置为：播放
+				// 暂停状态中按钮设置为：播放
 				play.setText("播放");
 				status = 0x13;
 				break;
@@ -105,6 +107,8 @@ public class MusicServiceBroadReceiveActivity extends Activity implements
 		case R.id.stop:
 			intent.putExtra("control", 2);
 			break;
+		case R.id.next:
+			intent.putExtra("control", 3);
 		}
 		// 发送广播，将被Service组件中的BroadcastReceive接收到
 		sendBroadcast(intent);
