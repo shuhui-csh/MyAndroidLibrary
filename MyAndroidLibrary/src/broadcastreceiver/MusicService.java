@@ -73,6 +73,8 @@ public class MusicService extends Service {
 				sendBroadcast(uiIntent);
 				// 准备播放下一首歌曲
 				prepareAndPlay(musics[current]);
+				// 这时更改通知栏上的信息
+				showInForeword(current);
 			}
 		});
 		super.onCreate();
