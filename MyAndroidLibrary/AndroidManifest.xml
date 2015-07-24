@@ -35,11 +35,6 @@
         <activity
             android:name="volley.VolleyActivity"
             android:label="@string/title_activity_volley" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="handler.HandlerActivity"
@@ -78,6 +73,15 @@
         <activity
             android:name="broadcastreceiver.MusicServiceBroadReceiveActivity"
             android:label="@string/title_activity_music_service_broad_receive" >
+        </activity>
+        <activity
+            android:name="fragment.FragmentActivity"
+            android:label="@string/title_activity_fragment" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
