@@ -75,7 +75,11 @@
             android:label="@string/title_activity_music_service_broad_receive" >
         </activity>
         <activity
-            android:name="fragment.FragmentActivity"
+            android:name="fragment.FragmentsActivity"
+            android:label="@string/title_activity_fragment" >
+        </activity>
+        <activity
+            android:name="viewpager.ViewPagerFragment"
             android:label="@string/title_activity_fragment" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

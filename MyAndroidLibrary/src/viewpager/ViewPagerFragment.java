@@ -1,19 +1,34 @@
-package fragment;
+/**
+ * 
+ */
+package viewpager;
+
+import java.util.ArrayList;
 
 import com.example.myandroidlibrary.R;
 
-import android.os.Bundle;
+import fragment.ContactsFragment;
+import fragment.MessageFragment;
+import fragment.NewsFragment;
+import adapter.MyFragmentPagerAdapter;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class FragmentActivity extends Activity implements OnClickListener {
+/**
+ * @author CSH 2015-7-26
+ */
+public class ViewPagerFragment extends FragmentActivity implements
+		OnClickListener {
 
 	/**
 	 * 底部导航栏消息界面的布局
@@ -68,17 +83,28 @@ public class FragmentActivity extends Activity implements OnClickListener {
 	 * 动态界面Fragment
 	 */
 	private Fragment newsFragment;
+	/**
+	 * viewPager控件
+	 */
+	private ViewPager myViewPager;
+	/**
+	 * 装载Fragment的list
+	 */
+	private ArrayList<Fragment> fragmentList;
+	/**
+	 * viewPager的Adapter
+	 */
+	private MyFragmentPagerAdapter pageFragmentAdapter;
 
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fragment);
-		initView();
+		setContentView(R.layout.activity_viewpager_fragment);
 		// 获取fragment管理器
-		fragmentManager = getFragmentManager();
-		// 初始界面选中第一个tab
-		setTabSelection(0);
+		fragmentManager = this.getSupportFragmentManager();
+		initView();
+
 	}
 
 	/**
@@ -95,9 +121,42 @@ public class FragmentActivity extends Activity implements OnClickListener {
 		messageText = (TextView) findViewById(R.id.message_text);
 		contactsText = (TextView) findViewById(R.id.contacts_text);
 		newsText = (TextView) findViewById(R.id.news_text);
+		myViewPager = (ViewPager) findViewById(R.id.viewpagercontent);
 		message_layout.setOnClickListener(this);
 		contacts_layout.setOnClickListener(this);
 		news_layout.setOnClickListener(this);
+		fragmentList = new ArrayList<Fragment>();
+		messageFragment = new MessageFragment();
+		contactsFragment = new ContactsFragment();
+		newsFragment = new NewsFragment();
+		fragmentList.add(messageFragment);
+		fragmentList.add(contactsFragment);
+		fragmentList.add(newsFragment);
+		pageFragmentAdapter = new MyFragmentPagerAdapter(fragmentManager,
+				fragmentList);
+		myViewPager.setAdapter(pageFragmentAdapter);
+		// 初始界面选中第一个tab
+		setTabSelection(0);
+		myViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int arg0) {
+				// TODO Auto-generated method stub
+				setTabSelection(arg0);
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 	}
 
@@ -127,58 +186,61 @@ public class FragmentActivity extends Activity implements OnClickListener {
 	/**
 	 * @param i
 	 */
+
 	private void setTabSelection(int i) {
 		// TODO Auto-generated method stub
 		// 每次选中之前先清楚掉上次的选中状态
 		clearSelection();
-		// 开启一个Fragment事务
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		// 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
-		hideFragments(transaction);
+		// // 开启一个Fragment事务
+		// FragmentTransaction transaction = fragmentManager.beginTransaction();
+		// // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
+		// hideFragments(transaction);
 		switch (i) {
 		case 0:
 			// 当点击了消息tab时，改变控件的图片和文字颜色
 			messageImage.setBackgroundResource(R.drawable.message_selected);
 			messageText.setTextColor(Color.WHITE);
-			if (messageFragment == null) {
-				// 如果MessageFragment为空，则创建一个并添加到界面上
-				messageFragment = new MessageFragment();
-				transaction.add(R.id.content, messageFragment);
-			} else {
-				transaction.show(messageFragment);
-			}
+			// if (messageFragment == null) {
+			// // 如果MessageFragment为空，则创建一个并添加到界面上
+			// messageFragment = new MessageFragment();
+			// transaction.add(R.id.content, messageFragment);
+			// } else {
+			// //transaction.show(messageFragment);
+			// }
+
 			break;
 		case 1:
 			// 当点击了联系人tab时，改变控件的图片和文字颜色
 			contactsImage.setBackgroundResource(R.drawable.contacts_selected);
 			contactsText.setTextColor(Color.WHITE);
-			if (contactsFragment == null) {
-				// 如果ContactsFragment为空，则创建一个并添加到界面上
-				contactsFragment = new ContactsFragment();
-				transaction.add(R.id.content, contactsFragment);
-			} else {
-				// 如果ContactsFragment不为空，则直接将它显示出来
-				transaction.show(contactsFragment);
-			}
+			// if (contactsFragment == null) {
+			// // 如果ContactsFragment为空，则创建一个并添加到界面上
+			// contactsFragment = new ContactsFragment();
+			// transaction.add(R.id.content, contactsFragment);
+			// } else {
+			// // 如果ContactsFragment不为空，则直接将它显示出来
+			// transaction.show(contactsFragment);
+			// }
 			break;
 		case 2:
 			// 当点击了动态tab时，改变控件的图片和文字颜色
 			newsImage.setBackgroundResource(R.drawable.news_selected);
 			newsText.setTextColor(Color.WHITE);
-			if (newsFragment == null) {
-				// 如果NewsFragment为空，则创建一个并添加到界面上
-				newsFragment = new NewsFragment();
-				transaction.add(R.id.content, newsFragment);
-			} else {
-				// 如果NewsFragment不为空，则直接将它显示出来
-				transaction.show(newsFragment);
-			}
+			// if (newsFragment == null) {
+			// // 如果NewsFragment为空，则创建一个并添加到界面上
+			// newsFragment = new NewsFragment();
+			// transaction.add(R.id.content, newsFragment);
+			// } else {
+			// // 如果NewsFragment不为空，则直接将它显示出来
+			// transaction.show(newsFragment);
+			// }
 			break;
 		default:
 			break;
 		}
-		// 提交事务
-		transaction.commit();
+		// // 提交事务
+		// transaction.commit();
+		myViewPager.setCurrentItem(i);
 	}
 
 	/**
@@ -187,6 +249,7 @@ public class FragmentActivity extends Activity implements OnClickListener {
 	 * @param transaction
 	 *            用于对Fragment执行操作的事务
 	 */
+	@SuppressLint("NewApi")
 	private void hideFragments(FragmentTransaction transaction) {
 		// TODO Auto-generated method stub
 		if (messageFragment != null) {
