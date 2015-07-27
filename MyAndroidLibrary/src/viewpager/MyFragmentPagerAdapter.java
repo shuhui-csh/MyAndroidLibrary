@@ -1,7 +1,7 @@
 /**
  * 
  */
-package adapter;
+package viewpager;
 
 import java.util.ArrayList;
 import java.util.List;

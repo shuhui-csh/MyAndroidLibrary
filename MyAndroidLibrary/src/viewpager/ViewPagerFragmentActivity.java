@@ -10,7 +10,6 @@ import com.example.myandroidlibrary.R;
 import fragment.ContactsFragment;
 import fragment.MessageFragment;
 import fragment.NewsFragment;
-import adapter.MyFragmentPagerAdapter;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,13 +20,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 /**
  * @author CSH 2015-7-26
  */
-public class ViewPagerFragment extends FragmentActivity implements
+public class ViewPagerFragmentActivity extends FragmentActivity implements
 		OnClickListener {
 
 	/**
@@ -100,6 +100,8 @@ public class ViewPagerFragment extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// 设置全屏，无标题栏
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_viewpager_fragment);
 		// 获取fragment管理器
 		fragmentManager = this.getSupportFragmentManager();
