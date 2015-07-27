@@ -15,7 +15,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 
 /**
- * @author CSH 2015-7-20
+ * @author CSH 2015-7-20 这里利用泛型编程来提高程序的可重用性
  */
 public class GsonRequest<T> extends Request<T> {
 	private final Listener<T> mListener;

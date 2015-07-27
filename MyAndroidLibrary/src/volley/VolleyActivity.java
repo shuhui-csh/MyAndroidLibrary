@@ -1,9 +1,13 @@
 package volley;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+
+import xmlparser.City;
+import xmlparser.XmlPullParserTools;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -92,36 +96,12 @@ public class VolleyActivity extends Activity {
 					 */
 					@Override
 					public void onResponse(XmlPullParser response) {
-						// TODO Auto-generated method stub
-						try {
-							// StringBuffer cityName = new StringBuffer(
-							// "xml解析的城市名为:");
-							responseStr.append("xml解析的城市名为:");
-							int evenType = response.getEventType();
-							while (evenType != XmlPullParser.END_DOCUMENT) {
-								switch (evenType) {
-								case XmlPullParser.START_TAG:
-									String nodeName = response.getName();
-									if ("city".equals(nodeName)) {
-
-										String cName = response
-												.getAttributeValue(0);
-										responseStr.append(cName);
-										responseStr.append("、");
-										Log.i("cName", cName);
-									}
-									break;
-								}
-								evenType = response.next();
-							}
-							textview.setText(responseStr.append("\n"));
-						} catch (XmlPullParserException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						List<City> list = XmlPullParserTools
+								.ParserXmlSpecial(response);
+						for (City city : list) {
+							responseStr.append(city.toString());
 						}
+						textview.setText(responseStr);
 					}
 				}, new Response.ErrorListener() {
 
@@ -131,7 +111,6 @@ public class VolleyActivity extends Activity {
 						Log.i("xmlError", error.getMessage());
 					}
 				});
-
 		final GsonRequest<Weather> gsonRequest = new GsonRequest<Weather>(
 				"http://www.weather.com.cn/data/sk/101010100.html",
 				Weather.class, new Response.Listener<Weather>() {
